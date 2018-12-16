@@ -1,37 +1,40 @@
 <template>
-    <div id="movieDetail">
-        <!--ha，我是电影的详情页{{$route.params.id}}-->
-      <div class="detail-header" :style="{background:headerColor}">
-        <!--<div class="bgImg" :style="ObgImg"></div>-->
-        <img class="headerImg" :src="imgLink" alt="">
-      </div>
-      <div class="info">
-        <div class="infos">
-          <p class="info-title">{{details.title}}</p>
-          <p>
-            <span>{{details.year}}</span>
-            <span>{{types}}</span>
-          </p>
-          <p v-show="details.original_title!=details.title">原名：{{details.original_title}}</p>
-          <p>上映时间：{{details.year}}</p>
-          <p>片长：</p>
+    <div class="left-side">
+      <div class="main">
+        <div class="cover">
+          <h1> title </h1>
+          <p> year </p>
+          <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
+        </div>
+        <div class="info">
+          <dl>
+          <dt>导演:</dt>
+          <dt>主演:</dt>
+          <dt>类型:</dt>
+          <dt>制片国家/地区:</dt>
+          </dl>
+        </div>
+        <div class = "content">
+          <p>电影简介</p>
         </div>
       </div>
-      <div class="story_info">
-        <p class="info-top">简介</p>
-        <p class="info-content">
-          <span>{{details.summary}}</span>
-          <span style="color:green;">展开</span>
-        </p>
-      </div>
-      <div class="actor_info">
-        <span></span>
-        <ul>
-          <li>
-            <div></div>
-          </li>
-        </ul>
-      </div>
-      <loading v-show="isLoading"></loading>
     </div>
 </template>
+<style scoped>
+left-side{
+  float: left;
+  width:590px;
+  padding-right: 40px;
+  .h1{
+    word-break: break-all;
+    display: block;
+    font-size: 25px;
+    font-weight: bold;
+    color: #494949;
+    padding: 0 0 15px 0;
+    .year{
+      color: #888;
+    }
+  }
+  }
+</style>

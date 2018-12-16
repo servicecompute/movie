@@ -1,16 +1,16 @@
 <template>
-  <div class="container-moving" v-loading="loadingDetail">
+  <div class="container-moving">
     <div class="content">
+    <h1>ad</h1>
       <h1>
-        <span class="title">{{movieDetail.title}} {{movieDetail.original_title}}</span>
-        <span class="year">({{movieDetail.year}})</span>
+
       </h1>
       <div class="detail clearfix">
         <div class="left-side">
           <div class="actor-list">
             <div class="subject">
               <div class="mainpic">
-                <a href="https://movie.douban.com/subject/25900945/photos?type=R"><img class="movieImg" :src="movieDetail.images.medium" alt="" title="点击查看更多海报"></a>
+
               </div>
               <div class="info">
                 <span class="p1">导演: </span><span v-for="item in movieDetail.directors" class="attrs">{{item.name}}</span><br>
@@ -24,7 +24,7 @@
             <p class="summary-title">{{movieDetail.title}}的剧情简介  ·  ·  ·  ·  ·  ·</p>
             <p class="intro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{movieDetail.summary}}</p>
           </div>
-          <movieComment :title="movieDetail.title"></movieComment>
+        
         </div>
       </div>
     </div>
@@ -36,29 +36,12 @@
     data () {
       return {
       }
-    },
-    mounted () {
-      let id = this.$route.query.id
-      this.$store.commit('MOVING_ID', {id})
-      this.$store.dispatch('getMovieDetail')
-    },
-    components: {
-      'movieComment': (resolve) => {
-        require(['./movieComment.vue'], resolve)
-      }
-    },
-    computed: {
-      movieDetail () {
-        return this.$store.getters.movieDetail
-      },
-      loadingDetail () {
-        return this.$store.getters.loadingDetail
-      }
     }
+
   }
 </script>
-<style rel="stylesheet/less" lang="less">
-  @import "../../../style/base";
+<style>
+
   .container-moving{
     width: 950px;
     margin: 30px auto;

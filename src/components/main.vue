@@ -1,7 +1,7 @@
 <template>
-  <div class="douban-header">
-    <div class="douban-header-container">
-      <div class="douban-search">
+  <div class="header">
+    <div class="container">
+      <div class="search">
         <a class="title">TMDB</a>
         <div class="search-container">
           <el-input placeholder="电影、影人、影院、电视剧" v-model="content">
@@ -12,25 +12,25 @@
       </div>
     </div>
     <div class="douban-bar">
-    
+
     </div>
     <div class="search-list" v-loading="searchLoading">
     <el-row>
-    <el-col :span="8" v-for="(o, index) in 10" :key="o" :offset="index > 0 ? 2 : 0">
-     <el-card :body-style="{ padding: '0px' }" shadow="hover">
+     <el-col :span="8" v-for="(o, index) in 8" :key="o" :offset="index > 0 ? 2 : 0" class="card" >
+     <el-card :body-style="{ padding: '0px' }" shadow="hover" >
        <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
        <div style="padding: 14px;">
          <span>好吃的汉堡</span>
          <div class="bottom clearfix">
            <time class="time">{{ currentDate }}</time>
-           <el-button type="text" class="button">操作按钮</el-button>
+           <el-button type="text" class="button" >详情</el-button>
          </div>
        </div>
      </el-card>
     </el-col>
 
 
-     </el-row>
+   </el-row>
 
 
     </div>
@@ -62,7 +62,7 @@
       },
       searchMovie () {
 
-        this.$router.push({path: '/detail', query: {searchText: this.content}})
+        this.$router.push({path: '/detail', query: {search: this.content}})
       }
     }
   }
@@ -70,20 +70,20 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.card{
+   margin-left:80px;
+    margin-bottom:80px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
+
 a {
   color: #42b983;
 }
+
+.container{
+ margin-bottom:50px;
+}
+
 .time {
     font-size: 13px;
     color: #999;
@@ -112,5 +112,9 @@ a {
 
   .clearfix:after {
       clear: both
+  }
+
+  .search-list{
+   width:100%;
   }
 </style>

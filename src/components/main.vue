@@ -16,15 +16,15 @@
     </div>
     <div class="search-list" v-loading="searchLoading" id="list">
     <el-row>
-     <el-col :span="8" v-for="item in message" :key="o" :offset="index > 0 ? 2 : 0" class="card" >
+     <el-col :span="8" v-for="(item,index) in subjects" :key="o" :offset="index > 0 ? 2 : 0" class="card" >
      <el-card :body-style="{ padding: '0px' }" shadow="hover" >
-       <img src="http://element-cn.eleme.io/static/hamburger.50e4091.png" class="image">
+       <img v-bind:src="item.images.small" class="image">
        <div style="padding: 14px;">
-         <span>{{item.name}}</span>
+         <span>{{item.title}}</span>
          <div class="bottom clearfix">
-          <span class="time">{{item.author}}</span>
+          <span class="time">{{item.year}}</span>
 
-           <el-button type="text" class="button" @click="getCustomers">详情</el-button>
+           <el-button type="text" class="button" @click="jumptodetail(index)">详情</el-button>
          </div>
        </div>
      </el-card>
@@ -58,7 +58,10 @@
         }],
         message:
         [
-],
+        ],
+        subjects:[
+
+        ],
         movies:[],
          currentDate: new Date()
       }
@@ -67,6 +70,9 @@
         this.getMovies()
      },
     methods: {
+    jumptodetail(index){
+      this.$router.push({path: '/detail', query: {search: this.subjects[index].id}})
+    },
       choiceUrl (title) {
         this.title = title
       },
@@ -75,9 +81,10 @@
         this.$router.push({path: '/detail', query: {search: this.content}})
       },
       getMovies: function() {
-          this.$http.get("http://localhost:9988/v1/buckets/movie_1/keys/name").then((response) => {
+          this.$http.get("/v2/movie/in_theaters?count=10").then((response) => {
 
-                  this.message=response.body
+                  this.message=response.body;
+                  this.subjects=this.message.subjects;
 
           },(response) => {
               console.log("sc")
@@ -124,6 +131,7 @@ a {
 
   .image {
     width: 100%;
+    height: 80%;
     display: block;
   }
 

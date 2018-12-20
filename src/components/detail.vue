@@ -20,6 +20,41 @@
       </div>
     </div>
 </template>
+<script>
+  export default{
+  data () {
+    return {
+      param:this.$route.params,
+      movie:{
+
+      }
+    }
+  },
+  mounted: function() {
+    this.getMovies();
+
+  },
+  methods:{
+  getMovies: function() {
+      this.$http.get("/v2/movie/subject/"+this.param).then((response) => {
+
+
+      },(response) => {
+          console.log("error")
+
+      }).catch(function(response) {
+          console.log(response)
+      })
+  }
+  }
+
+
+
+  }
+
+</script>
+
+
 <style scoped>
 left-side{
   float: left;
